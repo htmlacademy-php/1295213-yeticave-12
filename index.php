@@ -43,6 +43,15 @@ $ads = [
         'url' => 'img/lot-6.jpg'
     ]
 ];
+
+function format_price($number) {
+    $number = ceil($number);
+    if ($number >= 1000) {
+        $number = number_format($number, 0, ',', ' ');
+    }
+    $number = $number . ' p';
+    return $number;
+};
 ?>
 <!DOCTYPE html>
 <html lang="ru">
@@ -109,7 +118,7 @@ $ads = [
                     <h2>Открытые лоты</h2>
                 </div>
                 <ul class="lots__list">
-                    <?php foreach ($categories as $key => $item): ?>
+                    <?php foreach ($ads as $key => $item): ?>
                     <li class="lots__item lot">
                         <div class="lot__image">
                             <img src="<?=$item['url']; ?>" width="350" height="260" alt="<?=$item['name']; ?>">
@@ -120,7 +129,7 @@ $ads = [
                             <div class="lot__state">
                                 <div class="lot__rate">
                                     <span class="lot__amount">Стартовая цена</span>
-                                    <span class="lot__cost"><?=$item['price']; ?><b class="rub">р</b></span>
+                                    <span class="lot__cost"><?= format_price($item['price']) ?></span>
                                 </div>
                                 <div class="lot__timer timer">
                                     12:23

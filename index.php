@@ -1,4 +1,6 @@
 <?php
+require ('helpers.php');
+
 $is_auth = rand(0, 1);
 
 $user_name = 'Эдуард'; // укажите здесь ваше имя
@@ -52,9 +54,10 @@ function format_price($number) {
     $number = $number . ' p';
     return $number;
 };
-$page_content = include_template('main.php', ['category' => $categories, 'item' => $ads]);
+$page_content = include_template('main.php', ['categories' => $categories, 'ads' => $ads]);
 
-$layout_content = include_template('layout.php', ['content' => $page_content, 'title' => 'Главная']);
+$layout_content = include_template('layout.php', ['page_content' => $page_content, 'categories' => $categories, 'ads' => $ads, 'title' => 'Главная', 'user_name' => $user_name, 'is_auth' => $is_auth]);
 
 print($layout_content);
+
 ?>

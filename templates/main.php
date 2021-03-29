@@ -28,8 +28,8 @@
                                 <span class="lot__amount">Стартовая цена</span>
                                 <span class="lot__cost"><?= format_price($item['price']) ?></span>
                             </div>
-                            <div class="lot__timer timer">
-                                12:23
+                            <div class="lot__timer timer<?php if(reset(get_time($item['time_finish'])) < 1): ?> timer--finishing<?php endif;?> ">
+                                <?= implode(":", get_time($item['time_finish'])) ?>
                             </div>
                         </div>
                     </div>

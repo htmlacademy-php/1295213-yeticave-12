@@ -2,7 +2,7 @@ CREATE
 DATABASE yeticave
 DEFAULT CHARACTER SET utf8
 DEFAULT COLLATE utf8_general_ci;
-USE yeticave
+USE yeticave;
 
 CREATE TABLE category
 (
@@ -24,10 +24,7 @@ CREATE TABLE lot
 
     author_id   INT      NOT NULL,
     winner_id   INT      NOT NULL,
-    category_id INT      NOT NULL,
-    FOREIGN KEY (author_id) REFERENCES site_user (id),
-    FOREIGN KEY (winner_id) REFERENCES site_user (id),
-    FOREIGN KEY (category_id) REFERENCES category (id)
+    category_id INT      NOT NULL
 );
 
 CREATE TABLE rate
@@ -38,9 +35,7 @@ CREATE TABLE rate
     price    INT      NOT NULL,
 
     user_id  INT      NOT NULL,
-    lot_id   INT      NOT NULL,
-    FOREIGN KEY (user_id) REFERENCES site_user (id),
-    FOREIGN KEY (lot_id) REFERENCES lot (id)
+    lot_id   INT      NOT NULL
 );
 
 CREATE TABLE site_user
@@ -53,9 +48,7 @@ CREATE TABLE site_user
     contacts CHAR     NOT NULL,
 
     lot_id   INT      NOT NULL,
-    rate_us  INT      NOT NULL,
-    FOREIGN KEY (lot_id) REFERENCES lot (id),
-    FOREIGN KEY (rate_us) REFERENCES rate (price)
+    rate_us  INT      NOT NULL
 );
 
 CREATE
@@ -68,3 +61,17 @@ CREATE
 INDEX price ON rate(price);
 CREATE
 INDEX data_finish ON lot(data_finish);
+
+ALTER TABLE lot
+    ADD FOREIGN KEY (author_id) REFERENCES site_user (id),
+    ADD FOREIGN KEY (winner_id) REFERENCES site_user (id),
+    ADD FOREIGN KEY (category_id) REFERENCES category (id);
+
+ALTER TABLE rate
+    ADD FOREIGN KEY (user_id) REFERENCES site_user (id),
+    ADD FOREIGN KEY (lot_id) REFERENCES lot (id);
+
+ALTER TABLE site_user
+    ADD FOREIGN KEY (lot_id) REFERENCES lot (id),
+    ADD FOREIGN KEY (rate_us) REFERENCES rate (price);
+

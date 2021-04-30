@@ -7,23 +7,23 @@ USE yeticave;
 CREATE TABLE category
 (
     id     INT AUTO_INCREMENT PRIMARY KEY,
-    name_category   CHAR NOT NULL,
-    s_code CHAR NOT NULL
+    name_category   CHAR(64) NOT NULL,
+    s_code CHAR(64) NOT NULL
 );
 
 CREATE TABLE lot
 (
     id          INT AUTO_INCREMENT PRIMARY KEY,
     add_time    DATETIME NOT NULL,
-    name_lot        CHAR     NOT NULL UNIQUE,
+    name_lot        CHAR(64)     NOT NULL UNIQUE,
     description TEXT     NOT NULL,
-    img         CHAR     NOT NULL UNIQUE,
+    img         CHAR(64)     NOT NULL UNIQUE,
     start_price INT      NOT NULL,
     data_finish DATETIME NOT NULL,
     step_rate   INT      NOT NULL,
 
     author_id   INT      NOT NULL,
-    winner_id   INT      NOT NULL,
+    winner_id   INT      ,
     category_id INT      NOT NULL
 );
 
@@ -42,13 +42,13 @@ CREATE TABLE site_user
 (
     id       INT AUTO_INCREMENT PRIMARY KEY,
     data_reg DATETIME NOT NULL,
-    email    CHAR     NOT NULL UNIQUE,
-    name_user     CHAR     NOT NULL,
-    password CHAR     NOT NULL,
-    contacts CHAR     NOT NULL,
+    email    CHAR(64)     NOT NULL UNIQUE,
+    name_user     CHAR(64)     NOT NULL,
+    password CHAR(64)     NOT NULL,
+    contacts CHAR(64)     NOT NULL,
 
-    lot_id   INT      NOT NULL,
-    rate_us  INT      NOT NULL
+    lot_id   INT      ,
+    rate_us  INT
 );
 
 CREATE

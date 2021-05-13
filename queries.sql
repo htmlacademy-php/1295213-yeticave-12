@@ -1,3 +1,10 @@
+INSERT INTO site_user
+SET data_reg = NOW(), email = 'email@mail.ru', name_user = 'Alex', password = '33453', contacts = '00032432';
+INSERT INTO site_user
+SET data_reg = NOW(), email = 'email1@mail.ru', name_user = 'Mike', password = '33r4453', contacts = '00032445432';
+INSERT INTO site_user
+SET data_reg = NOW(), email = 'email22@mail.ru', name_user = 'Anna', password = '33vv453', contacts = '3300032432';
+
 INSERT INTO category
 SET name_category = 'Доски и лыжи', s_code = 'boards';
 INSERT INTO category
@@ -49,13 +56,6 @@ INSERT INTO rate
 SET add_time = NOW(), price = '17000', user_id = '1', lot_id = '2';
 INSERT INTO rate
 SET add_time = NOW(), price = '9000', user_id = '3', lot_id = '3';
-
-INSERT INTO site_user
-SET data_reg = NOW(), email = 'email@mail.ru', name_user = 'Alex', password = '33453', contacts = '00032432';
-INSERT INTO site_user
-SET data_reg = NOW(), email = 'email1@mail.ru', name_user = 'Mike', password = '33r4453', contacts = '00032445432';
-INSERT INTO site_user
-SET data_reg = NOW(), email = 'email22@mail.ru', name_user = 'Anna', password = '33vv453', contacts = '3300032432';
 
 
 // получить все категории

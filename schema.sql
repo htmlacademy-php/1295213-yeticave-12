@@ -4,6 +4,19 @@ DEFAULT CHARACTER SET utf8
 DEFAULT COLLATE utf8_general_ci;
 USE yeticave;
 
+CREATE TABLE site_user
+(
+    id       INT AUTO_INCREMENT PRIMARY KEY,
+    data_reg DATETIME NOT NULL,
+    email    CHAR(64)     NOT NULL UNIQUE,
+    name_user     CHAR(64)     NOT NULL,
+    password CHAR(64)     NOT NULL,
+    contacts CHAR(64)     NOT NULL,
+
+    lot_id   INT      ,
+    rate_us  INT
+);
+
 CREATE TABLE category
 (
     id     INT AUTO_INCREMENT PRIMARY KEY,
@@ -36,19 +49,6 @@ CREATE TABLE rate
 
     user_id  INT      NOT NULL,
     lot_id   INT      NOT NULL
-);
-
-CREATE TABLE site_user
-(
-    id       INT AUTO_INCREMENT PRIMARY KEY,
-    data_reg DATETIME NOT NULL,
-    email    CHAR(64)     NOT NULL UNIQUE,
-    name_user     CHAR(64)     NOT NULL,
-    password CHAR(64)     NOT NULL,
-    contacts CHAR(64)     NOT NULL,
-
-    lot_id   INT      ,
-    rate_us  INT
 );
 
 CREATE

@@ -52,6 +52,21 @@ $ads = [
     ]
 ];
 
+$con = mysqli_connect("localhost", "root", "root", "yeticave");
+mysqli_set_charset($con, "utf8");
+if ($con == false) {
+    print("Ошибка подключения: " . mysqli_connect_error());
+}
+else {
+    $sql = "SELECT name_category, s_code FROM category";
+    $result = mysqli_query($con, $sql);
+    $rows = mysqli_fetch_all($result, MYSQLI_ASSOC);
+
+    $sql2 = "SELECT l.name_lot, l.start_price, l.img, l.data_finish, c.name_category FROM lot l INNER JOIN category c ON l.id = c.id ORDER BY add_time ASC";
+    $result2 = mysqli_query($con, $sql2);
+    $lots = mysqli_fetch_all($result2, MYSQLI_ASSOC);
+}
+
 function format_price($number) {
     $number = ceil($number);
     if ($number >= 1000) {
@@ -71,9 +86,10 @@ function get_time ($data_finish) {
     return $hour_minute;
 };
 
-$page_content = include_template('main.php', ['categories' => $categories, 'ads' => $ads]);
+$page_content = include_template('main.php', ['categories' => $categories, 'ads' => $ads, 'rows' => $rows, 'lots' => $lots,]);
 
-$layout_content = include_template('layout.php', ['page_content' => $page_content, 'categories' => $categories, 'ads' => $ads, 'title' => 'Главная', 'user_name' => $user_name, 'is_auth' => $is_auth]);
+$layout_content = include_template('layout.php',
+    ['page_content' => $page_content, 'categories' => $categories, 'ads' => $ads, 'title' => 'Главная', 'user_name' => $user_name, 'is_auth' => $is_auth, 'rows' => $rows]);
 
 print($layout_content);
 

@@ -17,9 +17,12 @@
         <ul class="lots__list">
             <?php foreach ($lots as $key => $item): ?>
                 <li class="lots__item lot">
-                    <div class="lot__image">
-                        <img src="<?=htmlspecialchars($item['img']); ?>" width="350" height="260" alt="<?=htmlspecialchars($item['name_lot']); ?>">
-                    </div>
+                    <a href="lot.php?id=<?=$item['id']?>">
+                        <div class="lot__image">
+                            <img src="<?= htmlspecialchars($item['img']); ?>" width="350" height="260"
+                                 alt="<?= htmlspecialchars($item['name_lot']); ?>">
+                        </div>
+                    </a>
                     <div class="lot__info">
                         <span class="lot__category"><?=htmlspecialchars($item['name_category']); ?></span>
                         <h3 class="lot__title"><a class="text-link" href="pages/lot.html"><?=htmlspecialchars($item['name_lot']); ?></a></h3>

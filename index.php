@@ -5,7 +5,7 @@ require_once('functions.php');
 
 $is_auth = rand(0, 1);
 
-$user_name = 'Эдуард'; // укажите здесь ваше имя
+$user_name = 'Эдуард';
 
 $con = mysqli_connect("localhost", "root", "root", "yeticave");
 mysqli_set_charset($con, "utf8");
@@ -22,7 +22,7 @@ if ($con == false) {
 };
 
 $page_content = include_template('main.php', ['rows' => $rows, 'lots' => $lots]);
-$lot_content = include_template('lot.php', ['rows' => $rows, 'lots' => $lots]);
+$lot_content = include_template('controlles/lot.php', ['rows' => $rows, 'lots' => $lots]);
 
 $layout_content = include_template('layout.php',
     ['page_content' => $page_content, 'title' => 'главная', 'user_name' => $user_name, 'is_auth' => $is_auth, 'rows' => $rows]);

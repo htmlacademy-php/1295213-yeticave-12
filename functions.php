@@ -20,3 +20,32 @@ $minute = floor(($diff % 3600) / 60);
 $hour_minute = array($hour, $minute);
 return $hour_minute;
 };
+
+function validateLength($value, $min, $max) {
+    if ($value) {
+        $len = strlen($value);
+        if ($len < $min or $len > $max) {
+            return "Значение должно быть от $min до $max символов";
+        }
+    }
+
+    return null;
+}
+
+function validateNumber($value) {
+    if ($value < 0) {
+            return "Значение должно быть больше 0";
+        }
+
+    return null;
+}
+
+
+function getPostVal($name) {
+    return $_POST[$name] ?? "";
+}
+
+
+
+
+

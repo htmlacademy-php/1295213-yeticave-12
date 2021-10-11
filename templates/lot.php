@@ -13,7 +13,7 @@
     <header class="main-header">
         <div class="main-header__container container">
             <h1 class="visually-hidden">YetiCave</h1>
-            <a class="main-header__logo" href="index.html">
+            <a class="main-header__logo" href="index.php">
                 <img src="../img/logo.svg" width="160" height="39" alt="Логотип компании YetiCave">
             </a>
             <form class="main-header__search" method="get" action="https://echo.htmlacademy.ru" autocomplete="off">
@@ -72,7 +72,7 @@
                                     <span class="lot-item__cost"><?= htmlspecialchars($item["start_price"]) ?></span>
                                 </div>
                                 <div class="lot-item__min-cost">
-                                    Мин. ставка <span>  XXX </span>
+                                    Мин. ставка <span>  <?= htmlspecialchars($item["start_price"]) +  $item["step_rate"]?> </span>
                                 </div>
                             </div>
                             <form class="lot-item__form" action="https://echo.htmlacademy.ru" method="post"
@@ -151,24 +151,11 @@
 <footer class="main-footer">
     <nav class="nav">
         <ul class="nav__list container">
-            <li class="nav__item">
-                <a href="all-lots.html">Доски и лыжи</a>
-            </li>
-            <li class="nav__item">
-                <a href="all-lots.html">Крепления</a>
-            </li>
-            <li class="nav__item">
-                <a href="all-lots.html">Ботинки</a>
-            </li>
-            <li class="nav__item">
-                <a href="all-lots.html">Одежда</a>
-            </li>
-            <li class="nav__item">
-                <a href="all-lots.html">Инструменты</a>
-            </li>
-            <li class="nav__item">
-                <a href="all-lots.html">Разное</a>
-            </li>
+            <?php foreach ($rows as $row): ?>
+                <li class="nav__item <?= $row['s_code'] ?>">
+                    <a href="pages/all-lots.html"><?= htmlspecialchars($row['name_category']) ?></a>
+                </li>
+            <?php endforeach; ?>
         </ul>
     </nav>
     <div class="main-footer__bottom container">

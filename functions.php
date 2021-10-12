@@ -1,5 +1,10 @@
 <?php
 
+/**
+ * функция форматирования цены
+ *
+ */
+
 function format_price($number)
 {
 $number = ceil($number);
@@ -9,6 +14,11 @@ $number = number_format($number, 0, ',', ' ');
 $number = $number . ' p';
 return $number;
 };
+
+/**
+ * получение даты окончания лота
+ *
+ */
 
 function get_time($data_finish)
 {
@@ -21,6 +31,11 @@ $hour_minute = array($hour, $minute);
 return $hour_minute;
 };
 
+/**
+ * валидация длины введенного текста в поле
+ *
+ */
+
 function validateLength($value, $min, $max) {
     if ($value) {
         $len = strlen($value);
@@ -32,6 +47,11 @@ function validateLength($value, $min, $max) {
     return null;
 }
 
+/**
+ * валидация введенного числа
+ *
+ */
+
 function validateNumber($value) {
     if ($value < 0) {
             return "Значение должно быть больше 0";
@@ -39,6 +59,11 @@ function validateNumber($value) {
 
     return null;
 }
+
+/**
+ * возвращает значение поля в форму
+ *
+ */
 
 
 function getPostVal($name) {

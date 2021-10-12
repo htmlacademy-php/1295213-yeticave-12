@@ -23,8 +23,12 @@ ORDER BY add_time ASC";
 
 $lot_id = $lot_link[0]['id'] ?? null;
 if ($lot_id !== null) {
-    $lot_content = include_template('lot.php', ['lot_link' => $lot_link, 'rows' => $rows]);
-    print($lot_content);
+    $is_auth = rand(0, 1);
+    $user_name = 'Эдуард';
+    $page_content = include_template('lot.php', ['lot_link' => $lot_link, 'rows' => $rows]);
+    $layout_content = include_template('layout.php',
+        ['page_content' => $page_content, 'title' => 'главная', 'user_name' => $user_name, 'is_auth' => $is_auth, 'rows' => $rows]);
+    print($layout_content);
 } else {
     header("location: pages/404.html");
 };

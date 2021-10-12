@@ -22,7 +22,6 @@ if ($con == false) {
 };
 
 $page_content = include_template('main.php', ['rows' => $rows, 'lots' => $lots]);
-$lot_content = include_template('controlles/lot.php', ['rows' => $rows, 'lots' => $lots]);
 
 $layout_content = include_template('layout.php',
     ['page_content' => $page_content, 'title' => 'главная', 'user_name' => $user_name, 'is_auth' => $is_auth, 'rows' => $rows]);

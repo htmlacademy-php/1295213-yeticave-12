@@ -5,13 +5,13 @@ require_once('functions.php');
 
 
 if ($_SERVER['REQUEST_METHOD'] == 'POST') {
-    $required = ['lot-name', 'category', 'message', 'lot-rate', 'lot-step'];
+    $required = ['lot-name', 'category', 'message', 'lot-rate', 'lot-step', 'lot-date'];
     $errors = [];
 
     $rules = [
-//        'lot-date' => function ($value) {
-//            return is_date_valid($value);
-//        },
+        'lot-date' => function ($value) {
+            return is_date_valid($value);
+        },
         'lot-rate' => function ($value) {
             return validateNumber($value);
         },
@@ -19,6 +19,7 @@ if ($_SERVER['REQUEST_METHOD'] == 'POST') {
             return validateNumber($value);
         }
     ];
+//    всегда есть ошибки
     $lot = filter_input_array(INPUT_POST, ['lot-name' => FILTER_DEFAULT, 'category' => FILTER_DEFAULT,
         'message' => FILTER_DEFAULT, 'lot-rate' => FILTER_DEFAULT, 'lot-step' => FILTER_DEFAULT, 'lot-date' => FILTER_DEFAULT], true);
 
@@ -63,8 +64,8 @@ if ($_SERVER['REQUEST_METHOD'] == 'POST') {
         if ($con == false) {
             print("Ошибка подключения: " . mysqli_connect_error());
         } else {
-            $sql = 'INSERT INTO lot (add_time, author_id, name_lot, category_id, description, start_price, step_rate, data_finish, img) VALUES (NOW(), 1, ?, ?, ?, ?, ?, ?, ?)';
-//        здесь не понял как записать правильно, в первых скобках наименования соответствуют столбцам в базе, и как установить соединение вообще
+            $sql = 'INSERT INTO lot (add_time, author_id, name_lot, category_id, description, start_price, step_rate, data_finish, img) VALUES (NOW(), 1, ?, ?, ?, ?, ?, ?, $file_url)';
+//            по $file_url ошибка, но пробовал ставить '1' вместо, не помогает
             $stmt = db_get_prepare_stmt($con, $sql, $lot);
             $res = mysqli_stmt_execute($stmt);
 
@@ -83,6 +84,7 @@ if ($_SERVER['REQUEST_METHOD'] == 'POST') {
 }
 else {
     $page_content = include_template('add-lot.php');
+    // ошибки что не определены переменные
 }
 
 $is_auth = rand(0, 1);

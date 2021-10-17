@@ -4,7 +4,7 @@ require_once('db_connection.php');
 require_once('service_functions.php');
 
 $is_auth = rand(0,1);
-$user_name = 'Artem2J';
+$user_name = 'Eduard';
 
 if(!isset($_GET['id'])){
     header('Location: pages/404.html');

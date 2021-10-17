@@ -1,7 +1,7 @@
 # Личный проект «YetiCave»
 
-* Студент: [Artem2J](https://up.htmlacademy.ru/php/12/user/1251513).
-* Наставник: [Алексей Петров](https://up.htmlacademy.ru/php/12/user/1231631).
+* Студент: [Эдуард Кичигин](https://htmlacademy.ru/profile/eduardkichigin).
+* Наставник: [Анатолий Пашин](https://htmlacademy.ru/profile/id1200767).
 
 ---
 

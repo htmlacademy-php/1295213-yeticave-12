@@ -44,7 +44,7 @@ function checkForErrors($incoming_data, $files_data): array{
         $result['message'] = 'Заполните описание';
     }
     if ((int)$incoming_data['lot-rate'] <= 0){
-        $result['lot-rate'] = 'Начальная цена должна быть больше 0';
+        $result['lot-rate'] = 'Начальная цена дожна быть больше 0';
     }
     if (!is_numeric($incoming_data['lot-step']) || (int)$incoming_data['lot-step'] <= 0){
         $result['lot-step'] = 'Шаг ставки должен быть целым положительным числом';

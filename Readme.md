@@ -1,7 +1,7 @@
 # Личный проект «YetiCave»
 
-* Студент: [Эдуард Кичигин](https://up.htmlacademy.ru/php/12/user/1295213).
-* Наставник: Артём Ильин.
+* Студент: [Эдуард Кичигин](https://htmlacademy.ru/profile/eduardkichigin).
+* Наставник: [Анатолий Пашин](https://htmlacademy.ru/profile/id1200767).
 
 ---
 

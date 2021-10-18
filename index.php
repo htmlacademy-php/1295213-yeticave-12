@@ -1,31 +1,43 @@
 <?php
 require_once('helpers.php');
-require_once('functions.php');
-
+require_once('db_connection.php');
+require_once('service_functions.php');
 
 $is_auth = rand(0, 1);
 
-$user_name = 'Эдуард'; // укажите здесь ваше имя
+$categories_arr = [];
+$items_arr = [];
 
-$con = mysqli_connect("localhost", "root", "root", "yeticave");
-mysqli_set_charset($con, "utf8");
-if ($con == false) {
-    print("Ошибка подключения: " . mysqli_connect_error());
-} else {
-    $sql_category = "SELECT name_category, s_code FROM category";
-    $result_category = mysqli_query($con, $sql_category);
-    $rows = mysqli_fetch_all($result_category, MYSQLI_ASSOC);
+$con = db_connect();
 
-    $sql_lot = "SELECT l.id, l.name_lot, l.start_price, l.img, l.data_finish, c.name_category FROM lot l INNER JOIN category c ON l.id = c.id ORDER BY add_time ASC";
-    $result_lot = mysqli_query($con, $sql_lot);
-    $lots = mysqli_fetch_all($result_lot, MYSQLI_ASSOC);
-};
+$categories_arr = getCategories($con);
 
-$page_content = include_template('main.php', ['rows' => $rows, 'lots' => $lots]);
-$lot_content = include_template('lot.php', ['rows' => $rows, 'lots' => $lots]);
+function getItems (mysqli $con): array{
+    $sql = "SELECT
+                i.id id, i.name, c.name category, IFNULL(b.price,start_price) price, img_path url, completion_date expiry_date
+             FROM  item i
+            LEFT JOIN category c on c.id = i.category_id
+            LEFT JOIN
+                (SELECT
+                    item_id, MAX(price) price
+                FROM bid b2
+                GROUP BY item_id) b ON i.id = b.item_id
+            WHERE i.winner_id IS NULL
+            ORDER BY date DESC";
+    $items = [];
+    $res = mysqli_query($con, $sql);
+    while ($res && $row = $res->fetch_assoc()){
+        $items[] = $row;
+    }
+    return $items;
+}
 
-$layout_content = include_template('layout.php',
-    ['page_content' => $page_content, 'title' => 'главная', 'user_name' => $user_name, 'is_auth' => $is_auth, 'rows' => $rows]);
+$items_arr = getItems($con);
+
+$user_name = 'Eduard';
+
+$page_content = include_template('main.php', [ 'items_arr' => $items_arr, 'categories_arr' => $categories_arr]);
+
+$layout_content = include_template('layout.php', ['is_auth' => $is_auth, 'user_name' => $user_name, 'categories_arr' => $categories_arr, 'content' => $page_content ,'title' => 'Главная']);
+
 print($layout_content);
-
-?>

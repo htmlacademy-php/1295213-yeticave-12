@@ -23,7 +23,6 @@ function checkId( mysqli $con, $id){
     $res = mysqli_stmt_get_result($stmt);
     if (mysqli_num_rows($res) == 0){
         header('Location: pages/404.html');
-        exit();
     }
 }
 

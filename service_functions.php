@@ -1,6 +1,5 @@
 <?php
 
-#функция времени до кончания лота
 function get_dt_range($date): array{
     date_default_timezone_set('Europe/Moscow');
     $expiry_date = DateTime::createFromFormat('Y-m-d', $date);
@@ -22,17 +21,14 @@ function get_dt_range($date): array{
     return [$hours, $minutes];
 }
 
-#преобразует специальные символы в HTML-сущности
 function xss_protection($string): string{
     return htmlspecialchars($string);
 }
 
-#форматирование цены
 function price_format($price): string{
     return number_format(ceil($price),0, '.',' ').' ₽';
 }
 
-# получить все категории
 function getCategories(mysqli $con): array{
     $sql = "SELECT name, code FROM category";
     $categories = [];

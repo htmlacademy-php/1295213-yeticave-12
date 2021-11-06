@@ -9,5 +9,4 @@ Thumbs.db
 vendor
 uploads/*
 !uploads/.gitkeep
-.vscode
 test

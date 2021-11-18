@@ -9,4 +9,6 @@ Thumbs.db
 vendor
 uploads/*
 !uploads/.gitkeep
+.vscode
 test
+config.php

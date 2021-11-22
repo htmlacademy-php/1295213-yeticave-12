@@ -5,6 +5,7 @@ require_once('db_connection.php');
 require_once('service_functions.php');
 require_once('request_validation.php');
 
+$con = db_connect();
 $winners = checkWinners($con);
 foreach($winners as $winner){
     setWinnerOnDB($con, $winner);
@@ -64,7 +65,7 @@ function setWinnerOnDB(mysqli $con, array $winner)
  */
 function sendCongratulations(mysqli $con, array $winner)
 {
-    $config = include ('config.php');
+    $config = include('config.php.dist');
     $transport = (new Swift_SmtpTransport('smtp.gmail.com', 465, 'ssl'))
     ->setUsername($config->gm_login)
     ->setPassword($config->gm_password)

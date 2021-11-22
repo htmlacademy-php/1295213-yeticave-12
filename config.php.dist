@@ -2,12 +2,12 @@
 
 return (object) array(
     //Настройки подключения к БД
-    'host' => 'localhost',
-    'user' => 'root',
-    'password' => 'root',
-    'database'=> 'yeti',
+    'host' => '',
+    'user' => '',
+    'password' => '',
+    'database'=> '',
 
     //Настройки Gmail SMTP сервера
-//    'gm_login' => ,
-//    'gm_password' =>
+    'gm_login' => ,
+    'gm_password' =>
 );

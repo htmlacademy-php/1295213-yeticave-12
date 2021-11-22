@@ -2,10 +2,10 @@
 
 return (object) array(
     //Настройки подключения к БД
-    'host' => ,
-    'user' => ,
-    'password' => ,
-    'database'=> ,
+    'host' => '',
+    'user' => '',
+    'password' => '',
+    'database'=> '',
 
     //Настройки Gmail SMTP сервера
     'gm_login' => ,

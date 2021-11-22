@@ -20,12 +20,12 @@
             <input type="search" name="search" placeholder="Поиск лота">
             <input class="main-header__search-btn" type="submit" name="find" value="Найти">
         </form>
-        <a class="main-header__add-lot button" href="<?= empty($user_name) ? '#' : 'add.php' ?>">Добавить лот</a>
+        <a class="main-header__add-lot button" href="<?= empty(xss_protection($user_name)) ? '#' : 'add.php' ?>">Добавить лот</a>
 
         <nav class="user-menu">
 
         <!-- здесь должен быть PHP код для показа меню и данных пользователя -->
-            <?php if ($user_name != null): ?>
+            <?php if (xss_protection($user_name) != null): ?>
                 <div class="user-menu__logged">
                     <p><?=xss_protection($user_name); ?></p>
                     <a class="user-menu__bets" href="my-bets.php">Мои ставки</a>
@@ -55,7 +55,7 @@
             <!--заполните этот список из массива категорий-->
             <?php foreach ($categories_arr as $category): ?>
             <li class="nav__item">
-                <a href="index.php?category=<?=$category['code']?>"><?=xss_protection($category['name']); ?></a>
+                <a href="index.php?category=<?=xss_protection($category['code'])?>"><?=xss_protection($category['name']); ?></a>
             </li>
             <?php endforeach;?>
         </ul>

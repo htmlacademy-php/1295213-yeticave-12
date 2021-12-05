@@ -20,14 +20,14 @@
             <input type="search" name="search" placeholder="Поиск лота">
             <input class="main-header__search-btn" type="submit" name="find" value="Найти">
         </form>
-        <a class="main-header__add-lot button" href="<?= empty(xss_protection($user_name)) ? '#' : 'add.php' ?>">Добавить лот</a>
+        <a class="main-header__add-lot button" href="<?= empty(htmlspecialchars($user_name)) ? '#' : 'add.php' ?>">Добавить лот</a>
 
         <nav class="user-menu">
 
         <!-- здесь должен быть PHP код для показа меню и данных пользователя -->
-            <?php if (xss_protection($user_name) != null): ?>
+            <?php if(isset($_SESSION['id'])): ?>
                 <div class="user-menu__logged">
-                    <p><?=xss_protection($user_name); ?></p>
+                    <p><?=htmlspecialchars($user_name); ?></p>
                     <a class="user-menu__bets" href="my-bets.php">Мои ставки</a>
                     <a class="user-menu__logout" href="logout.php">Выход</a>
                 </div>

@@ -9,7 +9,7 @@
       </ul>
     </nav>
 <section class="lot-item container">
-    <h2><?=$item_name?></h2>
+    <h2><?=xss_protection($item_name)?></h2>
     <div class="lot-item__content">
         <div class="lot-item__left">
             <div class="lot-item__image">
@@ -46,10 +46,10 @@
                 </form>
                 <?php endif; ?>
             </div>
-            
+
             <?php if(count($bid_history) > 0): ?>
             <div class="history">
-              <h3>История ставок (<span><?=count($bid_history); ?></span>)</h3> 
+              <h3>История ставок (<span><?=count($bid_history); ?></span>)</h3>
               <table class="history__list">
                 <?php foreach($bid_history as $bid): ?>
                 <tr class="history__item">
